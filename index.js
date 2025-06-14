@@ -1,14 +1,20 @@
-import express from 'express'
-const app = express()
-const PORT = process.env.PORT || 4000
+import { config } from './config.js'
+import { httpServer } from './src/server.js'
+import db from './src/lib/db.js'
+const PORT = config.port
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-app.get('/respuesta', (req, res) => {
-  res.json({message: 'Hola mundillo'})
-})
+//Connect to the database
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
-})
+//Iniciar el servidor y la base de datos
+async function startServer(){
+  try {
+    await db.connectDB()
+    httpServer.listen(PORT,() => {
+      console.log(`Servidor corriendo en el puerto ${PORT}`)
+    })
+  } catch (error) {
+    console.error('Error al iniciar le servidor',error)
+  }
+}
+
+startServer().catch(error => console.error('Error al iniciar la aplicacion',error))
