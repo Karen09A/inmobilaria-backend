@@ -1,4 +1,4 @@
-function handlerErrrors(error,request,response,next) {
+function handlerErrors(error,request,response,next) {
     console.error (error)
     response.status(error.status || 500).json({
         success : false,
@@ -7,4 +7,4 @@ function handlerErrrors(error,request,response,next) {
     next()
 }
 
-export default handlerErrrors
+export default handlerErrors
