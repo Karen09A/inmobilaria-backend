@@ -4,7 +4,7 @@ import cors from 'cors'
 import http from 'http'
 // Importar las ruta de estate
 import estatesRoutes from './routes/estates/estates.routes.js'
-
+import handlerErrors from './middleware/handleErrors.js'
 const app = express()// Create an Express application
 app.use(cors()) //Enable CORS for all routes
 app.use(express.json()) // Enable JSON parsing for request bodies
@@ -26,7 +26,9 @@ app.get('/', (req, res) => {
     })
 })
 
-//Middlewares
+//Middlewares -- Handler Errors
+
+app.use(handlerErrors)
 
 export{
   httpServer
