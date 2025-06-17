@@ -10,16 +10,13 @@ const amenitiesSchema = new Schema ({
     },
     description:{
         type :String,
+        required:true,
         trim : true
     },
     image :{
-        type :String,
-        trim : true
-    },
-    estate: {
-    type: Schema.Types.ObjectId,
-    ref: 'Estate'
-    }// preguntar es obligatorio referenciar este aqui o mejor na
+        type :Schema.Types.ObjectId,
+        ref : 'Multimedia'
+    }  
 },{
     timestamps:true // cuando se creo y actualizo algo
 })

@@ -13,10 +13,10 @@ const bannersSchema = new Schema({
         type :String,
         trim: true
     },
-    image: {
-        type: String,
-        trim : true
-    }
+     image :{
+        type :Schema.Types.ObjectId,
+        ref : 'Multimedia'
+    }  
 },{
     timestamps : true
 })

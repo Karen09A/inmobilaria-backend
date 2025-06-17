@@ -20,11 +20,7 @@ const multimediaSchema = new Schema ({
     description :{
         type : String,
         trim: true
-    },
-    estate: {
-    type: Schema.Types.ObjectId,
-    ref: 'Estate'
-    }// preguntar es obligatorio referenciar este aqui o mejor na
+    }
 },{
     timestamps:true // cuando se creo y actualizo algo
 })
