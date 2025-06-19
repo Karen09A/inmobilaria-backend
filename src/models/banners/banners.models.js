@@ -1,24 +1,32 @@
 import { model, Schema } from "mongoose";
 
-const bannersSchema = new Schema({
-    title :{
+const bannerSchema = new Schema({
+    title:{
         type: String,
+        required : [true,'El titulo es obligatorio'],
         trim : true
     },
-    text: {
+    text:{
         type : String,
+        required: [true, 'El texto es obligatorio'],
         trim : true
     },
-    link_cta:{
+    image:{
+        type :Schema.Types.ObjectId,
+        ref : 'Multimedia'
+    },
+    linkCta:{
         type :String,
         trim: true
     },
-    image: {
-        type: String,
-        trim : true
+    estateId:{
+        type :Schema.Types.ObjectId,
+        ref : 'Estate',
+        required: [true, 'El estateId es obligatorio'],
     }
+    
 },{
     timestamps : true
 })
 
-export const Banners = model ('Banners',bannersSchema)
+export const Banner = model ('Banner',bannerSchema)

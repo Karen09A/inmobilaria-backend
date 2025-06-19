@@ -1,27 +1,24 @@
 import {model ,Schema} from 'mongoose'
 
 
-const amenitiesSchema = new Schema ({
+const amenitySchema = new Schema ({
 
-    name :{
+    name:{
         type:String,
-        required : true,
+        required : [true,'El nombre es obligatorio'],
         trim : true 
     },
     description:{
         type :String,
+        required : [true,'La descripcion es obligatoria'],
         trim : true
     },
-    image :{
-        type :String,
-        trim : true
-    },
-    estate: {
-    type: Schema.Types.ObjectId,
-    ref: 'Estate'
-    }// preguntar es obligatorio referenciar este aqui o mejor na
+    image:{
+        type :Schema.Types.ObjectId,
+        ref : 'Multimedia'
+    }
 },{
     timestamps:true // cuando se creo y actualizo algo
 })
 
-export const Amenities = model ('Amenities',amenitiesSchema)
+export const Amenity = model ('Amenity',amenitySchema)
