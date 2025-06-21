@@ -1,41 +1,76 @@
-
-import { Banner } from "../../models/index.js";
 import { StatusHttp } from "../../lib/status.http.js";
+import { Banner } from '../../models/index.js'
 
-async function createBanner(bannerData,file) {
-
-    const {name} =bannerData
-    // Validar si existe una amenidad con ese nombre
-
-    const existingbanner =  await Banner.findOne({name})
-    if (existingbanner) {
-        throw new StatusHttp(`Ya existe esta amenidad con ese nombre`)        
-    }
-    if(file){
-
-    }
-    // Crea una nueva amenidad
-
-    const newbanner = await Banner.create(bannerData)
-    return newbanner
+async function createBanner (bannerData, file) {
+//   if (!file) {
+//     throw new status.http('File is required', 400)
+//   }
+  const { title } = bannerData
+  const bannerFound = await Banner.findOne({ title })
+  if (bannerFound) {
+    throw new StatusHttp('Banner with this title already exists')
+  }
+  // Hacer lalógica para gestionar el archivo multimedia
+  if (file) {
+    // Aquí podrías agregar la lógica para manejar el archivo multimedia, como guardarlo en un servicio de almacenamiento
+    // y luego asignar su ID al campo `image` del bannerData.
+    // Por ejemplo:
+    // const multimedia = await Multimedia.create({ file: file.path })
+    // bannerData.image = multimedia._id
+  }
+  const newBanner = await Banner.create(bannerData)
+  return newBanner
 }
 
-async function getAllBanners(){
-    const banners = await Banner.find({}).populate ('image','url')
-    return banners
+// Obtener todos los banners
+async function getAllBanners () {
+  const banners = await Banner.find({}).populate(['image', 'estateId']) // Asegúrate de que el campo 'image' esté poblado con la URL del multimedia
+  return banners
 }
 
-async function updateAmenity(identifer, newData ,file) {
-    const isObjectId = isValidObjectId(identifer)
-    let updateAmenity
-    if(isObjectId){
-        updateAmenity = await Amenity.findByIdAndUpdate(identifer,newData,{new :true})//Actualiza por ID    
-    }else{
-        updateAmenity = await Amenity.findOneAndUpdate({slug : identifer},newData,{new :true})
-    }
-    //Validar si la propiedad existe
-    if(!updateAmenity){
-        throw new StatusHttp(`No se encontro la amenidad con el identificador ${identifer}`)
-    }
-    return updateAmenity 
+// Obtener un banner por ID
+async function getBannerById (id) {
+  const banner = await Banner.findById(id).populate(['image', 'estateId'])
+  if (!banner) {
+    throw new StatusHttp(`Banner with ID ${id} not found`, 404)
+  }
+  return banner
+}
+
+// Actualizar un banner
+async function updateBanner (id, newBannerData, file) {
+  const banner = await Banner.findById(id)
+  if (!banner) {
+    throw new StatusHttp(`Banner with ID ${id} not found`, 404)
+  }
+  if (file) {
+    // Aquí podrías agregar la lógica para manejar el archivo multimedia, como guardarlo en un servicio de almacenamiento
+    // y luego asignar su ID al campo `image` del newBannerData.
+    // Por ejemplo:
+    // const multimedia = await Multimedia.create({ file: file.path })
+    // newBannerData.image = multimedia._id
+  }
+  const updatedBanner = await Banner.findByIdAndUpdate(id, newBannerData, { new: true }).populate('image', 'url')
+  if (!updatedBanner) {
+    throw new StatusHttp(`Banner with ID ${id} not found`, 404)
+  }
+  return updatedBanner
+}
+
+// Eliminar un banner
+async function deleteBanner (id) {
+  const banner = await Banner.findByIdAndDelete(id)
+  if (!banner) {
+    throw new StatusHttp(`Banner with ID ${id} not found`, 404)
+  }
+  return banner
+}
+
+// Exportar las funciones
+export {
+  createBanner,
+  getAllBanners,
+  getBannerById,
+  updateBanner,
+  deleteBanner
 }

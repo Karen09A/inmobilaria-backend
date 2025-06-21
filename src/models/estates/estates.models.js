@@ -88,9 +88,13 @@ const estateSchema = new Schema({
         type :Schema.Types.ObjectId,
         ref:'Multimedia'
     },
+    category_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category' // Reference to the Category model
+    },
     amenities: {
         type: Schema.Types.ObjectId,
-        ref: 'Amenities'
+        ref: 'Amenity'
     }
 },{
     timestamps:true // cuando se creo y actualizo algo
