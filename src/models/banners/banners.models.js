@@ -11,10 +11,6 @@ const bannerSchema = new Schema({
         required: [true, 'El texto es obligatorio'],
         trim : true
     },
-    image:{
-        type :Schema.Types.ObjectId,
-        ref : 'Multimedia'
-    },
     linkCta:{
         type :String,
         trim: true
@@ -24,7 +20,7 @@ const bannerSchema = new Schema({
         ref : 'Estate',
         required: [true, 'El estateId es obligatorio'],
     },
-     image :{
+    image :{
         type :Schema.Types.ObjectId,
         ref : 'Multimedia'
     }  
