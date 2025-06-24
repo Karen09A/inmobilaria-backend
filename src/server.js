@@ -4,6 +4,8 @@ import cors from 'cors'
 import http from 'http'
 // Importar las ruta de estate
 import estatesRoutes from './routes/estates/estates.routes.js'
+import authRoutes from './routes/auth/auth.routes.js'
+
 import handlerErrors from './middleware/handleErrors.js'
 const app = express()// Create an Express application
 app.use(cors()) //Enable CORS for all routes
@@ -14,7 +16,7 @@ const httpServer = http.createServer(app)// Create an HTTP server using the expr
 // Routes
 
 app.use('/estates',estatesRoutes)
-
+app.use('/auth', authRoutes)
 
 //Define route for the root path
 
