@@ -1,21 +1,22 @@
 import { model, Schema } from "mongoose";
 
-const characteristicsSchema = new Schema ({
-    name :{
+const characteristicSchema = new Schema ({
+    name:{
         type :String ,
-        required: true,
+        required : [true,'El nombre es obligatorio'],
         trim :true
     },
-    description :{
+    description:{
         type :String ,
+        required : [true,'La descripcion es obligatoria'],
         trim: true
     },
-     image :{
+    image:{
         type :Schema.Types.ObjectId,
         ref : 'Multimedia'
-    }  
+    }
 },{
     timestamps : true
 })
 
-export const Characteristics = model ('Characteristics',characteristicsSchema)
+export const Characteristic = model ('Characteristic',characteristicSchema)

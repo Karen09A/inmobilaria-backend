@@ -2,7 +2,7 @@
 
 import { isValidObjectId } from "mongoose";
 import { Estate } from "../../models/index.js";
-import { StatusHttp } from "../../lib/status.http.js";
+import { StatusHttp } from "../../lib/statushttp.js";
 
 // Create New estate
 

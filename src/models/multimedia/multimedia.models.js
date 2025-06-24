@@ -1,24 +1,27 @@
 import { model , Schema } from "mongoose";
 
 const multimediaSchema = new Schema ({
-    type: { // Duda no es palabra reservada ?
+    type:{ // Duda no es palabra reservada ?
         type :String,
+        required : [true,'El type es obligatorio'],
         trim : true
     },
-    url :{
+    url:{
         type : String,
         trim : true
     },
-    key :{
+    key:{
         type: String,
         trim : true
     },
     name: {
         type :String,
+        required : [true,'El nombre es obligatorio'],
         trim: true
     },
-    description :{
+    description:{
         type : String,
+        required : [true,'La descripcion es obligatoria'],
         trim: true
     }
 },{
