@@ -1,4 +1,4 @@
-import { StatusHttp } from '../../lib/status.http.js'
+import { StatusHttp } from '../../lib/statushttp.js'
 import { Characteristic } from '../../models/index.js'
 
 // Crear una característica

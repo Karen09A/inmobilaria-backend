@@ -1,4 +1,4 @@
-import { StatusHttp } from "../../lib/status.http.js";
+import { StatusHttp } from "../../lib/statushttp.js";
 import { Banner } from '../../models/index.js'
 
 async function createBanner (bannerData, file) {

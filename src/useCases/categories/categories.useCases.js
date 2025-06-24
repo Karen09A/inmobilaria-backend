@@ -1,5 +1,4 @@
-import { StatusHttp } from "../../lib/status.http.js";
-
+import { StatusHttp } from "../../lib/statushttp.js";
 import { Category } from '../../models/index.js'
 
 // Crear una categoría

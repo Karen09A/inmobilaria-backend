@@ -2,7 +2,7 @@
 
 
 import { Amenity } from "../../models/index.js";
-import { StatusHttp } from "../../lib/status.http.js";
+import { StatusHttp } from "../../lib/statushttp.js";
 // Leer mas de query mongoose
 
 // Create a New Amenity
