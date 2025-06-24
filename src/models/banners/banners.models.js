@@ -23,8 +23,11 @@ const bannerSchema = new Schema({
         type :Schema.Types.ObjectId,
         ref : 'Estate',
         required: [true, 'El estateId es obligatorio'],
-    }
-    
+    },
+     image :{
+        type :Schema.Types.ObjectId,
+        ref : 'Multimedia'
+    }  
 },{
     timestamps : true
 })

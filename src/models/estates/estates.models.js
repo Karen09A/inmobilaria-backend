@@ -81,7 +81,7 @@ const estateSchema = new Schema({
         ref :'Estate'
     }],
     images:{
-        type :Schema.Types.ObjectID,
+        type :Schema.Types.ObjectId,
         ref:'Multimedia'
     },
     image_cover: { 
