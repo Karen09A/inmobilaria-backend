@@ -9,6 +9,10 @@ const userSchema = new Schema ({
         type: String,
         trim: true
     },
+    active: {
+        type:Boolean,
+        default: true
+    },
     email: {
         type: String,
         required: [true, 'El email es obligatorio'],
@@ -20,7 +24,7 @@ const userSchema = new Schema ({
         type: String,
         required: [true, 'La contraseña es obligatoria'],
         min: [8, 'La contraseña debe contener al menos 8 carácteres'],
-        select: false
+        select: false  //  Esto hace que NO se incluya por defecto en los `.find()` y `.findOne()`
     },
     phone: {
         type: String,

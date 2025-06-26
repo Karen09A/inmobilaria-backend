@@ -28,7 +28,10 @@ async function register(data) {
     return createdUser
 
 }
-
+// async function getAllUsers() {
+//     const users = await User.find({}) //Encuentra todos los documentos de la coleccion Estate
+//     return users
+// }
 async function login (data) {
     const { email, password } = data
 
@@ -60,4 +63,5 @@ async function login (data) {
 export {
     register,
     login
+    // getAllUsers Esto fue por mera curiosidad je
 }

@@ -2,7 +2,8 @@ function handlerErrors(error,request,response,next) {
     console.error (error)
     response.status(error.status || 500).json({
         success : false,
-        message: error.status || 'Un error ocurrio Por favor intentarlo mas tarde',
+        // message: error.status || 'Un error ocurrio Por favor intentarlo mas tarde',
+        message: error.message || 'Un error ocurrió. Por favor intentarlo más tarde',
     })
     next()
 }
