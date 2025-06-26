@@ -1,3 +1,4 @@
+
 import { model, Schema} from 'mongoose'
 
 const estateSchema = new Schema({
@@ -80,14 +81,22 @@ const estateSchema = new Schema({
         ref :'Estate'
     }],
     images:{
-        type :Schema.Types.ObjectID,
+        type :Schema.Types.ObjectId,
         ref:'Multimedia'
     },
     image_cover: { 
-        type :Schema.Types.ObjectID,
+        type :Schema.Types.ObjectId,
         ref:'Multimedia'
+    },
+    category_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category' // Reference to the Category model
+    },
+    amenities: {
+        type: Schema.Types.ObjectId,
+        ref: 'Amenity'
     }
 },{
-    timestamps:true
+    timestamps:true // cuando se creo y actualizo algo
 })
 export const Estate = model ('Estate',estateSchema)

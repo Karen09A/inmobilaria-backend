@@ -1,6 +1,6 @@
 import bcrypt from "../../lib/bcrypt.js"
 import { generateToken } from "../../lib/jwt.js"
-import { StatusHttp } from "../../lib/status.http.js"
+import { StatusHttp } from "../../lib/statushttp.js"
 import { User } from "../../models/index.js"
 
 

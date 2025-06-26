@@ -1,19 +1,18 @@
 import express from 'express'
-//import { createEstate, getAllEstates, getEstateByIdOrSlug, updateEstate ,delateEstate } from '../../useCases/estates/estate.useCases.js'
-import { Estate } from '../../useCases/index.js'
+
+import { Amenity } from '../../useCases/index.js'
 
 const router = express.Router()
 
-// POST / estates
+// POST / amenities
 
 router.post('/',async (request, response , next)=>{
     try{
-        const body = request.body
-        const estate = await Estate.createEstate(body)
+        const amenity = await Amenity.createAmenity(request.body)
         response.status(201).json({
             success : true,
-            message:'Property created sucessfully',
-            data : estate
+            message:'Amenidad created sucessfully',
+            data : amenity
         })
     }catch(error){
         next(error)
@@ -24,60 +23,60 @@ router.post('/',async (request, response , next)=>{
 
 router.get('/',async (request, response , next)=>{
     try{
-        const estates = await Estate.getAllEstates()
+        const amenities = await Amenity.getAllAmenity()
         response.status(200).json({
             success : true,
-            message:'Properties retrieved sucessfully',
-            data : estates
+            message:'Amenities retrieved sucessfully',
+            data : amenities
         })
     }catch(error){
         next(error)
     }
 })
 
-//GET/estates/:id
+//GET amenities/:id
 
 router.get('/:identifer',async (request, response , next)=>{
     try{
         const {identifer} = request.params
-        const estate = await Estate.getEstateByIdOrSlug(identifer)
+        const amenity = await Amenity.getAmenityByIdOrSlug(identifer)
         response.status(200).json({
             success : true,
-            message:'Propiedad encontrada correctamente',
-            data : estate
+            message:'Amenidad encontrada correctamente',
+            data : amenity
         })
     }catch(error){
         next(error)
     }
 })
 
-//PATCH/estates/:id
+//PATCH Amenities/:id
 
 router.patch('/:identifer',async (request, response , next)=>{
     try{
         const {identifer} = request.params
         const body = request.body
-        const estate = await Estate.updateEstate(identifer,body)
+        const amenity = await Amenity.updateAmenity(identifer,body)
         response.status(202).json({
             success : true,
-            message:'Propiedad actualizada correctamente',
-            data : estate
+            message:'Amenidad actualizada correctamente',
+            data : amenity
         })
     }catch(error){
         next(error)
     }
 })
 
-//DELATE /estates/:id
+//DELATE  Amenitys/:id
 
 router.delete('/:identifer',async (request, response , next)=>{
     try{
         const {identifer} = request.params
-        const estate = await Estate.delateEstate(identifer)
+        const amenity = await Amenity.delateAmenity(identifer)
         response.status(200).json({
             success : true,
             message:'Propiedad borrada correctamente',
-            data : estate
+            data : amenity
         })
     }catch(error){
         next(error)
