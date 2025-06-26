@@ -1,12 +1,13 @@
 import express from 'express'
 //import { createEstate, getAllEstates, getEstateByIdOrSlug, updateEstate ,delateEstate } from '../../useCases/estates/estate.useCases.js'
 import { Estate } from '../../useCases/index.js'
+import { authenticate, authorize  } from '../../middleware/auth.js'
 
 const router = express.Router()
 
 // POST / estates
 
-router.post('/',async (request, response , next)=>{
+router.post('/', authenticate, authorize('admin'), async (request, response, next) => {
     try{
         const body = request.body
         const estate = await Estate.createEstate(body)
@@ -21,9 +22,9 @@ router.post('/',async (request, response , next)=>{
 })
 
 //GET
-
-router.get('/',async (request, response , next)=>{
+router.get('/', authenticate, authorize('admin', 'user'), async (request, response, next) => {
     try{
+        console.log('User authenticated:',request.user)
         const estates = await Estate.getAllEstates()
         response.status(200).json({
             success : true,

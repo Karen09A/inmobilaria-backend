@@ -1,6 +1,6 @@
 import express from 'express'
 import {register, login} from '../../useCases/auth/auth.useCases.js'
-
+// import { authenticate, authorize  } from '../../middleware/auth.js'
 
 const router = express.Router()
 
@@ -31,5 +31,22 @@ router.post('/login', async( request, response, next) => {
         next(error)
     }
 })
+
+// GET /list
+
+//GET
+// router.get('/list', authenticate, authorize('admin'), async (request, response, next) => {
+//     try{
+//         console.log('User authenticated:',request.user)
+//         const user = await getAllUsers()
+//         response.status(200).json({
+//             success : true,
+//             message:'Properties retrieved sucessfully',
+//             data : user
+//         })
+//     }catch(error){
+//         next(error)
+//     }
+// })
 
 export default router

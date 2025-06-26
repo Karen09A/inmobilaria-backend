@@ -24,7 +24,6 @@ async function createEstate(estateData) {
 // Obtener todas las estates
 
 async function getAllEstates() {
-
     const estates = await Estate.find({}) //Encuentra todos los documentos de la coleccion Estate
     return estates
     
