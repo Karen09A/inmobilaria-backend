@@ -26,6 +26,11 @@ const userSchema = new Schema ({
         type: String,
         trim: true,
         match: [/^\+?[0-9]{10,15}$/, 'Por favor ingresa un número de celular válido']
+                // La expresión regular valida:
+                // - ^           : inicio de la cadena
+                // - \+?         : un signo "+" opcional (para códigos internacionales)
+                // - [0-9]{10,15}: entre 10 y 15 dígitos numéricos
+                // - $           : fin de la cadena
     },
     role: {
         type: String,
